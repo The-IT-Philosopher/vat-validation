@@ -5,12 +5,15 @@ $vatValidation = new vatValidation( array('debug' => true));
 
 
 //if($vatValidation->check('BE', '0828639227')) {
-if($vatValidation->checkFull('BE0828639227')) {
-	echo '<h1>valid one!</h1>';
-	echo 'name: ' . $vatValidation->getName(). '<br/>';
-	echo 'address: ' . $vatValidation->getAddress(). '<br/>';
-} else {
-	echo '<h1>Invalid VAT</h1>';
+try {
+  if($vatValidation->checkFull('BE0828639227')) {
+	  echo '<h1>valid one!</h1>';
+	  echo 'name: ' . $vatValidation->getName(). '<br/>';
+	  echo 'address: ' . $vatValidation->getAddress(). '<br/>';
+  } else {
+	  echo '<h1>Invalid VAT</h1>';
+  }
+} catch (Exception $e) {
+  echo 'Caught exception: ',  $e->getMessage();
 }
-
 ?></body></html>
