@@ -1,7 +1,7 @@
 <html><head><meta charset=utf-8></head><body>
 <?php
 require_once('vatValidation.class.php');
-$vatValidation = new vatValidation( array('debug' => false));
+$vatValidation = new vatValidation( array('debug' => true));
 
 
 //if($vatValidation->check('BE', '0828639227')) {
@@ -12,4 +12,5 @@ if($vatValidation->checkFull('BE0828639227')) {
 } else {
 	echo '<h1>Invalid VAT</h1>';
 }
+
 ?></body></html>

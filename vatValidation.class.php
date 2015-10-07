@@ -5,7 +5,7 @@ class vatValidation
 	private $_client = null;
 
 	private $options  = array(
-						'debug' => true,
+						'debug' => false,
 						);	
 	
 	private $_valid = false;
@@ -45,8 +45,8 @@ class vatValidation
 		if($rs->valid) {
 			$this->_valid = true;
 			$this->_data = array(
-									'name' => 			$this->cleanUpString($rs->name), 
-									'address' => 		$this->cleanUpString($rs->address),
+									'name' => 			$rs->name,
+									'address' => 		$rs->address,
 								);
 			return true;
 		} else {
