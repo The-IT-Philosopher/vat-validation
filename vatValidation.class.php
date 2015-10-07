@@ -72,7 +72,7 @@ class vatValidation
 		return ($this->_options['debug'] === true);
 	}
 	private function trace($title,$body) {
-		echo '<h2>TRACE: '.$title.'</h2><pre>'. htmlentities($body).'</pre>';
+		echo '<h2>TRACE: '.$title.'</h2><pre>'. wordwrap(htmlentities($body)).'</pre>';
 	}
 	private function cleanUpString($string) {
         for($i=0;$i<100;$i++)
