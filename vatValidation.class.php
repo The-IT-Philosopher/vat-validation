@@ -31,10 +31,10 @@ class vatValidation
 	public function checkFull($fullVatNumber) {
     $countryCode = substr($fullVatNumber,0,2);
     $vatNumber   =substr($fullVatNumber,2);
-    return $this->check($countryCode, $vatNumber);
+    return $this->checkSplitted($countryCode, $vatNumber);
   }
 
-	public function check($countryCode, $vatNumber) {
+	public function checkSplitted($countryCode, $vatNumber) {
 
 		$rs = $this->_client->checkVat( array('countryCode' => $countryCode, 'vatNumber' => $vatNumber) );
 

@@ -14,13 +14,16 @@ __It actually only works for European countries__
 
 	require_once('vatValidation.class.php');
 	$vatValidation = new vatValidation( array('debug' => false));
-	$vatValidation->check($countryCode, $vatNumber));
+
+Either
+	$vatValidation->checkSplitted($countryCode, $vatNumber));
+or
+	$vatValidation->checkFull($fullVatNumber));
 
 Your instance can now access the following methods:
 
 	$vatValidation->isValid()
 	$vatValidation->getName()
-	$vatValidation->getDenomination()
 	$vatValidation->getAddress() 
 
 You'll find an example in the example.php file
