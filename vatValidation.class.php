@@ -5,7 +5,7 @@ class vatValidation
 	private $_client = null;
 
 	private $options  = array(
-						'debug' => false,
+						'debug' => true,
 						);	
 	
 	private $_valid = false;
@@ -44,10 +44,8 @@ class vatValidation
 
 		if($rs->valid) {
 			$this->_valid = true;
-			list($denomination,$name) = explode(" " ,$rs->name,2);
 			$this->_data = array(
-									'denomination' => 	$denomination, 
-									'name' => 			$this->cleanUpString($name), 
+									'name' => 			$this->cleanUpString($rs->name), 
 									'address' => 		$this->cleanUpString($rs->address),
 								);
 			return true;
@@ -60,10 +58,6 @@ class vatValidation
 
 	public function isValid() {
 		return $this->_valid;
-	}
-	
-	public function getDenomination() {
-		return $this->_data['denomination'];
 	}
 	
 	public function getName() {
