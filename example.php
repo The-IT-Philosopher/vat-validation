@@ -3,7 +3,8 @@ require_once('vatValidation.class.php');
 $vatValidation = new vatValidation( array('debug' => false));
 
 
-if($vatValidation->check('BE', '0828639227')) {
+//if($vatValidation->check('BE', '0828639227')) {
+if($vatValidation->checkFull('BE0828639227')) {
 	echo '<h1>valid one!</h1>';
 	echo 'denomination: ' . $vatValidation->getDenomination(). '<br/>';
 	echo 'name: ' . $vatValidation->getName(). '<br/>';
