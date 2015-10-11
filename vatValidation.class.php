@@ -43,7 +43,7 @@ class vatValidation
       $countryCode = substr($fullVatNumber,0,2);
       $vatNumber   = substr($fullVatNumber,2);
       return $this->checkSplitted($countryCode, $vatNumber);
-    } catch (Exceoption $e) {
+    } catch (Exception $e) {
         if (!(isset($errors))) $errors = array();
         $errors[]=$e;
         return NULL;
