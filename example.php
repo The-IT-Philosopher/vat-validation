@@ -6,7 +6,7 @@ $vatValidation = new vatValidation( array('debug' => true));
 
 //if($vatValidation->check('BE', '0828639227')) {
 try {
-  if($vatValidation->checkFull('BE0828639227')) {
+  if($vatValidation->check('BE0828639227')) {
 	  echo '<h1>valid one!</h1>';
 	  echo 'name: ' . $vatValidation->getName(). '<br/>';
 	  echo 'address: ' . $vatValidation->getAddress(). '<br/>';

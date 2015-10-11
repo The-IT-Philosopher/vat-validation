@@ -11,6 +11,8 @@ class vatValidation
 	private $_valid = false;
 	private $_data = array();
 	
+  private $errors;
+
 	public function __construct($options = array()) {
 		
 		foreach($options as $option => $value) {
@@ -28,13 +30,23 @@ class vatValidation
 		}
 	}
 
-	public function checkFull($fullVatNumber) {
-    $countryCode = substr($fullVatNumber,0,2);
-    $vatNumber   =substr($fullVatNumber,2);
-    return $this->checkSplitted($countryCode, $vatNumber);
+	public function check($fullVatNumber) {
+    // TODO: 
+    // Some countries have planned downtime at a specific time
+    // What is the response from the service when this happens?
+
+    try {
+      $countryCode = substr($fullVatNumber,0,2);
+      $vatNumber   = substr($fullVatNumber,2);
+      return $this->checkSplitted($countryCode, $vatNumber);
+    } catch (Exceoption $e) {
+        if (!(isset($errors))) $errors = array();
+        $errors[]=$e;
+        return NULL;
+    }
   }
 
-	public function checkSplitted($countryCode, $vatNumber) {
+	private function checkSplitted($countryCode, $vatNumber) {
 
 		$rs = $this->_client->checkVat( array('countryCode' => $countryCode, 'vatNumber' => $vatNumber) );
 
@@ -67,6 +79,13 @@ class vatValidation
 	public function getAddress() {
 		return $this->_data['address'];
 	}
+
+  public function getData() {
+    $data = array();
+    $data['organisation_name'] = $this->_data['name'];
+    $data['address']           = $this->_data['address'];
+    return $data;
+  }
 	
 	public function isDebug() {
 		return ($this->_options['debug'] === true);
